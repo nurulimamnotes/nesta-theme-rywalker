@@ -1,0 +1,20 @@
+#sidebar
+  = haml :categories, :layout => false
+  = haml :feed, :layout => false
+  %p
+    I live in Cincinnati, Ohio, and have been doing web development since 1995. I currently serve
+    %a{ :href => "http://recruitmilitary.com" } RecruitMilitary
+    as Chief Experience Officer, in addition to
+    %a{ :href => "http://anotherventure.com"} another venture
+    in my spare time.
+  %p
+    I created and ran a first generation web development company, Sharkbytes, from 1995-2001. We participated in a roll up in 1999, and then the company died a slow death in the aftermath of the dotcom bubble burst.
+  %p
+    I grew up in Youngstown, Ohio and attended University of Cincinnati for two years, leaving early due to eagerness to get my career started.
+
+#content
+  %ul.articles
+    - @articles.each do |article|
+      %li
+        %a{ :href => article.abspath }= article.heading
+        = "&mdash;#{format_date(article.date)}"

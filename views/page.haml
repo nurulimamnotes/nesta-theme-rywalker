@@ -1,0 +1,34 @@
+.breadcrumb
+  %a{ :href => "/" } Home
+  &gt;
+  - if @page.parent
+    %a{ :href => @page.parent.abspath }= @page.parent.heading
+    &gt;
+  = @page.heading
+
+#sidebar
+  = haml :categories, :layout => false
+  = haml :feed, :layout => false
+
+#content
+  - if @page.date
+    .date= "#{format_date(@page.date)} by Ryan Walker"
+  ~ @page.to_html
+
+  %hr
+
+  - @page.pages.each do |page|
+    = haml :summary, :layout => false, :locals => { :article => page, :heading => :h3 }
+
+  %ul.articles
+    - @page.articles_and_links.each do |article|
+      = haml :summary, :layout => false, :locals => { :article => article, :heading => :h3 }
+
+  - unless @page.categories.empty?
+    .categories
+      Filed under
+      - @page.categories.each do |category|
+        %a{ :href => category.abspath }= category.heading
+
+  = haml :social, :layout => false
+  = haml :comments, :layout => false

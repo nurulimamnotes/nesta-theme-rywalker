@@ -1,0 +1,34 @@
+!!!
+%html{ :lang => "en", "xml:lang" => "en", :xmlns => 'http://www.w3.org/1999/xhtml' }
+  %head
+    %meta{ "http-equiv" => "content-type", "content" => "text/html; charset=utf-8" }
+    %meta{ "name" => "google-site-verification", "content" => "4Hi-js1lMajvkXFWosIZCUnhn6ShYIIajYztyhMJ_14" }
+    - if @description
+      %meta{ "name" => "description", "content" => @description }
+    - if @keywords
+      %meta{ "name" => "keywords", "content" => @keywords }
+    %title= @title
+    %link{ :href => "/css/master.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "/rywalker/prettify.css", :media => "screen", :rel => "stylesheet", :type => "text/css" }
+    %script{ :src => "/rywalker/prettify.js", :type => "text/javascript" }
+    %link{ :href => "/articles.xml", :rel => "alternate", :type => "application/atom+xml" }
+    %link{ :href => "/favicon.png", :rel => "icon", :type => "image/png" }
+
+  %body{ :class => @body_class, :onload => "prettyPrint()" }
+    #header
+      .wrapper
+        %h1
+          %a{ :href => "/" } rywalker.com
+          %small Ryan Walker on agile business and web software development
+    #container
+      .wrapper
+        = yield
+
+        #footer
+          %p
+            &copy;2005-2010 by Ryan Walker
+            |
+            Powered by
+            %a{ :href => "http://effectif.com/nesta" } Nesta
+
+    = haml :analytics, :layout => false
